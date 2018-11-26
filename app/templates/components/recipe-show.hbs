@@ -1,1 +1,26 @@
 <h1>{{recipe.name}}</h1>
+<p>Cook Time: {{recipe.cookTime}}</p>
+<p>Created At: {{recipe.createdAt}}</p>
+<p>Inactive Time: {{recipe.inactiveTime}}</p>
+<p>Name: {{recipe.name}}</p>
+<p>Prep Time: {{recipe.prepTime}}</p>
+<p>Servings: {{recipe.servings}}</p>
+<p>Source: {{recipe.source}}</p>
+<p>Updated At: {{recipe.updatedAt}}</p>
+
+<h2>Steps</h2>
+<pre>{{recipe.steps}}</pre>
+
+<h2>Ingredients</h2>
+<ul>
+  {{#each recipe.ingredients as |ingredient|}}
+    <li>{{ingredient.name}}</li>
+  {{/each}}
+</ul>
+
+<h2>Recipe Ingredients</h2>
+<ul>
+  {{#each recipe.recipeIngredients as |ri|}}
+    <li>{{ri.ingredient.name}}, {{#if ri.mass}}{{ri.mass}} grams{{/if}}{{#if ri.volume}}{{ri.volume}} milliliters{{/if}}{{#if ri.units}}{{ri.units}} units{{/if}}{{#if ri.notes}}, {{ri.notes}}{{/if}}</li>
+  {{/each}}
+</ul>
