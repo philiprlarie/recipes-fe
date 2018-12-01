@@ -1,12 +1,22 @@
-{{input value=value
-        key-up=(action "handleFilterEntry")
-        placeholder="Ingredient Name"}}
+{{input
+  value=value
+  key-up=(action "handleFilterEntry")
+  placeholder="Ingredient Name"
+}}
 
 <ul>
   {{#each possibleIngredients as |ingredient|}}
     <li {{action "onIngredientClicked" ingredient}}>
-      {{highlighted-substring str=ingredient.name
-                              substr=value}}
+      {{highlighted-substring
+        str=ingredient.name
+        substr=value
+      }}
     </li>
   {{/each}}
+
+  {{#if shouldShowCreateButton}}
+    <li {{action "onNewIngredientClicked"}}>
+      Create ingredient with name <strong>"{{value}}"</strong>
+    </li>
+  {{/if}}
 </ul>

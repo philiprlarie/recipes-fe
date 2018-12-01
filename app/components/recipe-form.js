@@ -4,7 +4,7 @@ export default Component.extend({
   testIngredient: null,
 
   actions: {
-    ingredientWasClicked(ingredient) {
+    ingredientWasSelected(ingredient) {
       this.set('testIngredient', ingredient);
     }
   }

@@ -3,7 +3,7 @@ import { inject } from '@ember/service';
 import { computed } from '@ember/object';
 
 /*
-  onIngredientClicked [function]
+  ingredientWasSelected [function]
 */
 
 export default Component.extend({
@@ -13,6 +13,15 @@ export default Component.extend({
   possibleIngredients: computed(function() {
     return [];
   }),
+
+  shouldShowCreateButton: computed('value', 'possibleIngredients', function() {
+    return this.value && !this.possibleIngredients.findBy('name', this.value);
+  }),
+
+  clear() {
+    this.set('value', '');
+    this.set('possibleIngredients', []);
+  },
 
   actions: {
     handleFilterEntry() {
@@ -30,9 +39,17 @@ export default Component.extend({
     },
 
     onIngredientClicked(ingredient) {
-      this.set('value', '');
-      this.set('possibleIngredients', []);
-      this.onIngredientClicked(ingredient);
+      this.clear();
+      this.ingredientWasSelected(ingredient);
+    },
+
+    onNewIngredientClicked() {
+      let newIngredient = this.store.createRecord('ingredient', {
+        name: this.value
+      });
+
+      this.clear();
+      this.ingredientWasSelected(newIngredient);
     }
   }
 });
