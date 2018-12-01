@@ -1,3 +1,12 @@
 {{input value=value
         key-up=(action "handleFilterEntry")
         placeholder="Ingredient Name"}}
+
+<ul>
+  {{#each possibleIngredients as |ingredient|}}
+    <li {{action "onIngredientClicked" ingredient}}>
+      {{highlighted-substring str=ingredient.name
+                              substr=value}}
+    </li>
+  {{/each}}
+</ul>
