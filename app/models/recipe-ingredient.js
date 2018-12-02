@@ -1,13 +1,17 @@
 import DS from 'ember-data';
+import { computed } from '@ember/object';
 
 export default DS.Model.extend({
+  amount: DS.attr('number'),
   createdAt: DS.attr('date'),
-  mass: DS.attr('number'),
   notes: DS.attr('string'),
-  units: DS.attr('number'),
   updatedAt: DS.attr('date'),
-  volume: DS.attr('number'),
 
   ingredient: DS.belongsTo('ingredient'),
-  recipe: DS.belongsTo('recipe')
+  measure: DS.belongsTo('measure'),
+  recipe: DS.belongsTo('recipe'),
+
+  amountDisplay: computed('amount', 'measure.display', function() {
+    return `${this.amount} ${this.get('measure.display') || ''}`.trim();
+  })
 })

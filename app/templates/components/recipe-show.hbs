@@ -21,6 +21,6 @@
 <h2>Recipe Ingredients</h2>
 <ul>
   {{#each recipe.recipeIngredients as |ri|}}
-    <li>{{ri.ingredient.name}}, {{#if ri.mass}}{{ri.mass}} grams{{/if}}{{#if ri.volume}}{{ri.volume}} milliliters{{/if}}{{#if ri.units}}{{ri.units}} units{{/if}}{{#if ri.notes}}, {{ri.notes}}{{/if}}</li>
+    <li>{{ri.ingredient.name}}, {{ri.amountDisplay}}{{#if ri.notes}}, {{ri.notes}}{{/if}}</li>
   {{/each}}
 </ul>
