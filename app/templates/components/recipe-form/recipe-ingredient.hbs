@@ -1,0 +1,28 @@
+<h1>Recipe Ingredient Form:</h1>
+<p>Ingredient: {{recipeIngredient.ingredient.name}}</p>
+<p>Amount: {{recipeIngredient.amount}}</p>
+<p>Measure: {{recipeIngredient.measure.unit}}</p>
+<p>Notes: {{recipeIngredient.notes}}</p>
+
+<h3>The Form:</h3>
+<p>Ingredient:</p>
+
+{{recipe-form/ingredient-search ingredientWasSelected=(action "ingredientWasSelected")}}
+
+{{input
+  value=(mut (get recipeIngredient "amount"))
+  type="number"
+  placeholder="Amount"}}
+
+<select onchange={{action "measureWasSelected" value="target.value"}}>
+  <option disabled selected={{not recipeIngredient.measure}}>Select units</option>
+  {{#each measures as |measure|}}
+    <option value={{measure.id}} selected={{eq recipeIngredient.measure.id measure.id}}>{{measure.unit}}</option>
+  {{/each}}
+</select>
+
+<br/>
+<br/>
+{{textarea
+  value=(mut (get recipeIngredient "notes"))
+  placeholder="Notes"}}
