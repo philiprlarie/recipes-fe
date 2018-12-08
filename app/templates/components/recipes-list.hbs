@@ -2,6 +2,6 @@
 
 <ul>
   {{#each recipes as |recipe|}}
-    <li>{{#link-to "recipes.recipe" recipe}}{{recipe.name}}{{/link-to}}</li>
+    <li>{{#link-to "recipes.recipe" recipe.id}}{{recipe.name}}{{/link-to}}</li>
   {{/each}}
 </ul>

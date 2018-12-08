@@ -6,5 +6,5 @@ export default DS.Model.extend({
   updatedAt: DS.attr('date'),
 
   recipes: DS.hasMany('recipe'),
-  recipeIngredients: DS.hasMany('recipe-ingredients')
+  recipeIngredients: DS.hasMany('recipe-ingredient')
 });
