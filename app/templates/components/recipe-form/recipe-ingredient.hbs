@@ -1,13 +1,6 @@
-<h1>Recipe Ingredient Form:</h1>
-<p>Ingredient: {{recipeIngredient.ingredient.name}}</p>
-<p>Amount: {{recipeIngredient.amount}}</p>
-<p>Measure: {{recipeIngredient.measure.unit}}</p>
-<p>Notes: {{recipeIngredient.notes}}</p>
-
-<h3>The Form:</h3>
 <p>Ingredient:</p>
-
 {{recipe-form/ingredient-search
+  ingredient=(readonly recipeIngredient.ingredient)
   ingredientWasSelected=(action "ingredientWasSelected")
 }}
 
@@ -35,3 +28,7 @@
   value=(mut (get recipeIngredient "notes"))
   placeholder="Notes"
 }}
+
+{{#if isNew}}
+  <button {{action "addIngredientButtonClicked"}}>Add Ingredient</button>
+{{/if}}

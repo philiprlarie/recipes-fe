@@ -1,0 +1,55 @@
+<h1>Recipe Form</h1>
+
+<p>Name</p>
+{{input
+  value=(mut (get recipe "name"))
+  placeholder="Name"
+}}
+
+<p>Source</p>
+{{input
+  value=(mut (get recipe "source"))
+  placeholder="Source (e.g. URL)"
+}}
+
+<p>Cook Time</p>
+{{input
+  value=(mut (get recipe "cookTime"))
+  type="number"
+  placeholder="Cook Time (minutes)"
+}}
+
+<p>Inactive Time</p>
+{{input
+  value=(mut (get recipe "inactiveTime"))
+  type="number"
+  placeholder="Inactive Time (minutes)"
+}}
+
+<p>Prep Time</p>
+{{input
+  value=(mut (get recipe "prepTime"))
+  type="number"
+  placeholder="Prep Time (minutes)"
+}}
+
+<p>Servings</p>
+{{input
+  value=(mut (get recipe "servings"))
+  type="number"
+  placeholder="Servings"
+}}
+
+<p>Steps</p>
+{{textarea
+  value=(mut (get recipe "steps"))
+  placeholder="Steps"
+}}
+
+<h2>Ingredients</h2>
+{{#each recipe.recipeIngredients as |ri|}}
+  {{recipe-form/recipe-ingredient givenRecipeIngredient=ri}}
+{{/each}}
+
+<h2>Add Ingredient</h2>
+{{recipe-form/recipe-ingredient submit=(action "addIngredient")}}

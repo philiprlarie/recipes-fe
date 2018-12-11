@@ -1,7 +1,7 @@
 {{input
   value=value
   key-up=(action "handleFilterEntry")
-  placeholder="Ingredient Name"
+  placeholder=(or ingredient.name "Ingredient Name")
 }}
 
 <ul>
