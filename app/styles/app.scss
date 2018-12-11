@@ -1,0 +1,11 @@
+// Define desired color palettes for each intention.
+$primary: "purple";
+$accent: "light-green";
+$warn: "pink";
+
+@import 'ember-paper';
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}

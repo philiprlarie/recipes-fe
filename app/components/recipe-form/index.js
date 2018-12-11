@@ -13,6 +13,8 @@ export default Component.extend({
     return this.givenRecipe || this.store.createRecord('recipe')
   }),
 
+  isNew: computed.not('givenRecipe'),
+
   actions: {
     addIngredient(recipeIngredient) {
       this.recipe.recipeIngredients.pushObject(recipeIngredient)

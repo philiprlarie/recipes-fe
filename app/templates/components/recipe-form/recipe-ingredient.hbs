@@ -4,31 +4,32 @@
   ingredientWasSelected=(action "ingredientWasSelected")
 }}
 
-{{input
-  value=(mut (get recipeIngredient "amount"))
+{{paper-input
+  label="Amount"
+  value=recipeIngredient.amount
+  onChange=(action (mut (get recipeIngredient "amount")))
   type="number"
-  placeholder="Amount"
+  placeholder="e.g. 2"
 }}
 
-<select onchange={{action "measureWasSelected" value="target.value"}}>
-  <option disabled selected={{not recipeIngredient.measure}}>Select units</option>
-  {{#each measures as |measure|}}
-    <option
-      value={{measure.id}}
-      selected={{eq recipeIngredient.measure.id measure.id}}
-    >
-      {{measure.unit}}
-    </option>
-  {{/each}}
-</select>
+{{#paper-select
+  label="Units"
+  options=measures
+  selected=recipeIngredient.measure
+  onChange=(action (mut (get recipeIngredient "measure")))
+  as |measure|}}
+  {{measure.unit}}
+{{/paper-select}}
 
-<br>
-<br>
-{{textarea
-  value=(mut (get recipeIngredient "notes"))
-  placeholder="Notes"
+{{paper-input
+  label="Notes"
+  value=recipeIngredient.notes
+  onChange=(action (mut (get recipeIngredient "notes")))
+  placeholder="You can substitute with..."
 }}
 
 {{#if isNew}}
-  <button {{action "addIngredientButtonClicked"}}>Add Ingredient</button>
+  {{#paper-button onClick=(action "addIngredientButtonClicked") raised=true primary=true}}
+    Add ingredient
+  {{/paper-button}}
 {{/if}}

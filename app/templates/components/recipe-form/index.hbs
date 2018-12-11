@@ -1,50 +1,76 @@
-<h1>Recipe Form</h1>
+{{#if isNew}}
+  <h1>New recipe</h1>
+{{else}}
+  <h1>Edit recipe</h1>
+{{/if}}
 
-<p>Name</p>
-{{input
-  value=(mut (get recipe "name"))
-  placeholder="Name"
-}}
+<div class="layout-row">
+  {{paper-input
+    class="flex-30"
+    label="Name"
+    placeholder="Enter name"
+    value=recipe.name
+    onChange=(action (mut (get recipe "name")))
+  }}
+</div>
 
-<p>Source</p>
-{{input
-  value=(mut (get recipe "source"))
-  placeholder="Source (e.g. URL)"
-}}
+<div class="layout-row">
+  {{paper-input
+    class="flex-50"
+    label="Source"
+    placeholder="Source (e.g. URL)"
+    value=recipe.source
+    onChange=(action (mut (get recipe "source")))
+  }}
+</div>
 
-<p>Cook Time</p>
-{{input
-  value=(mut (get recipe "cookTime"))
+<div class="layout-row">
+  {{paper-input
+    class="flex-33"
+    label="Cook Time (minutes)"
+    type="number"
+    placeholder="e.g. 30"
+    value=recipe.cookTime
+    onChange=(action (mut (get recipe "cookTime")))
+  }}
+  {{paper-input
+    class="flex-33"
+    label="Inactive Time (minutes)"
+    type="number"
+    placeholder="e.g. 5"
+    value=recipe.inactiveTime
+    onChange=(action (mut (get recipe "inactiveTime")))
+  }}
+  {{paper-input
+    class="flex-33"
+    label="Prep Time (minutes)"
+    type="number"
+    placeholder="e.g. 15"
+    value=recipe.prepTime
+    onChange=(action (mut (get recipe "prepTime")))
+  }}
+</div>
+
+{{paper-input
+  label="Servings"
   type="number"
-  placeholder="Cook Time (minutes)"
+  placeholder="e.g. 4"
+  value=recipe.servings
+  onChange=(action (mut (get recipe "servings")))
 }}
 
-<p>Inactive Time</p>
-{{input
-  value=(mut (get recipe "inactiveTime"))
-  type="number"
-  placeholder="Inactive Time (minutes)"
-}}
-
-<p>Prep Time</p>
-{{input
-  value=(mut (get recipe "prepTime"))
-  type="number"
-  placeholder="Prep Time (minutes)"
-}}
-
-<p>Servings</p>
-{{input
-  value=(mut (get recipe "servings"))
-  type="number"
-  placeholder="Servings"
-}}
-
-<p>Steps</p>
-{{textarea
-  value=(mut (get recipe "steps"))
-  placeholder="Steps"
-}}
+<div class="layout-row">
+  {{paper-input
+    block=true
+    label="Steps"
+    textarea=true
+    class="flex-50"
+    value=recipe.steps
+    onChange=(action (mut (get recipe "steps")))
+    placeholder="Steps"
+    passThru=(hash rows=7 maxRows=7)
+  }}
+</div>
 
 <h2>Ingredients</h2>
 {{#each recipe.recipeIngredients as |ri|}}
