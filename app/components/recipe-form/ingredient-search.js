@@ -9,13 +9,22 @@ import { computed } from '@ember/object';
 export default Component.extend({
   store: inject(),
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this.set('value', this.get('ingredient.name'));
+  },
+
   value: '',
   possibleIngredients: computed(function() {
     return [];
   }),
 
   shouldShowCreateButton: computed('value', 'possibleIngredients', function() {
-    return this.value && !this.possibleIngredients.findBy('name', this.value);
+    return (
+      this.value &&
+      !this.possibleIngredients.findBy('name', this.value) &&
+      !(this.get('ingredient.name') === this.value)
+    );
   }),
 
   clear() {
@@ -33,7 +42,7 @@ export default Component.extend({
       // https://www.emberjs.com/api/ember-data/3.5/classes/DS.Store/methods/query?anchor=query
       this.get('store').query('ingredient', { filter: { name_like: searchValue } }).then(results => {
         if (searchValue === this.value) {
-          this.set('possibleIngredients', results);
+          this.set('possibleIngredients', results.slice(0, 5));
         }
       });
     },

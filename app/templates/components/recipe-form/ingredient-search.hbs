@@ -1,22 +1,23 @@
-{{input
+{{paper-input
+  label="Ingredient name"
   value=value
-  key-up=(action "handleFilterEntry")
-  placeholder=(or ingredient.name "Ingredient Name")
+  onKeyUp=(action "handleFilterEntry")
+  onChange=(action (mut value))
+  placeholder="Ingredient name"
 }}
 
-<ul>
+{{#paper-list}}
   {{#each possibleIngredients as |ingredient|}}
-    <li {{action "onIngredientClicked" ingredient}}>
+    {{#paper-item onClick=(action "onIngredientClicked" ingredient)}}
       {{highlighted-substring
         str=ingredient.name
         substr=value
       }}
-    </li>
+    {{/paper-item}}
   {{/each}}
-
   {{#if shouldShowCreateButton}}
-    <li {{action "onNewIngredientClicked"}}>
-      Create ingredient with name <strong>"{{value}}"</strong>
-    </li>
+    {{#paper-item onClick=(action "onNewIngredientClicked")}}
+      <p>Create ingredient with name <strong>"{{value}}"</strong></p>
+    {{/paper-item}}
   {{/if}}
-</ul>
+{{/paper-list}}
