@@ -79,3 +79,7 @@
 
 <h2>Add Ingredient</h2>
 {{recipe-form/recipe-ingredient submit=(action "addIngredient")}}
+
+{{#paper-button onClick=(action "save") raised=true primary=true}}
+  Save Recipe
+{{/paper-button}}
