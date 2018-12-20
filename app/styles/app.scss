@@ -9,3 +9,15 @@ $warn: "pink";
   width: 960px;
   margin: 0 auto;
 }
+
+.recipe-ingredient-form {
+  position: relative;
+}
+
+.ingredient-list {
+  position: absolute;
+  top: 49px;
+  background: white;
+  border: 1px solid var(--foreground-4);
+  z-index: 2;
+}

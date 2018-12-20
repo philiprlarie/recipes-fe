@@ -1,4 +1,3 @@
-<p>Ingredient:</p>
 {{recipe-form/ingredient-search
   ingredient=(readonly recipeIngredient.ingredient)
   ingredientWasSelected=(action "ingredientWasSelected")
@@ -15,7 +14,7 @@
 {{#paper-select
   label="Units"
   options=measures
-  selected=recipeIngredient.measure
+  selected=(if recipeIngredient.measure.content recipeIngredient.measure)
   onChange=(action (mut (get recipeIngredient "measure")))
   as |measure|}}
   {{measure.unit}}

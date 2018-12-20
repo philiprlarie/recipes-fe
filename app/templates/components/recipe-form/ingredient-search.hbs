@@ -6,18 +6,20 @@
   placeholder="Ingredient name"
 }}
 
-{{#paper-list}}
-  {{#each possibleIngredients as |ingredient|}}
-    {{#paper-item onClick=(action "onIngredientClicked" ingredient)}}
-      {{highlighted-substring
-        str=ingredient.name
-        substr=value
-      }}
-    {{/paper-item}}
-  {{/each}}
-  {{#if shouldShowCreateButton}}
-    {{#paper-item onClick=(action "onNewIngredientClicked")}}
-      <p>Create ingredient with name <strong>"{{value}}"</strong></p>
-    {{/paper-item}}
-  {{/if}}
-{{/paper-list}}
+{{#if possibleIngredients.length}}
+  {{#paper-list class="ingredient-list"}}
+    {{#each possibleIngredients as |ingredient|}}
+      {{#paper-item onClick=(action "onIngredientClicked" ingredient)}}
+        {{highlighted-substring
+          str=ingredient.name
+          substr=value
+        }}
+      {{/paper-item}}
+    {{/each}}
+    {{#if shouldShowCreateButton}}
+      {{#paper-item onClick=(action "onNewIngredientClicked")}}
+        <p>Create ingredient with name <strong>"{{value}}"</strong></p>
+      {{/paper-item}}
+    {{/if}}
+  {{/paper-list}}
+{{/if}}
