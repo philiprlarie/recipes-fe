@@ -6,7 +6,7 @@
   placeholder="Ingredient name"
 }}
 
-{{#if possibleIngredients.length}}
+{{#if shouldShowList}}
   {{#paper-list class="ingredient-list"}}
     {{#each possibleIngredients as |ingredient|}}
       {{#paper-item onClick=(action "onIngredientClicked" ingredient)}}

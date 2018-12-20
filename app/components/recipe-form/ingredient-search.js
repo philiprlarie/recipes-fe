@@ -28,6 +28,10 @@ export default Component.extend({
     );
   }),
 
+  shouldShowList: computed('possibleIngredients.[]', 'shouldShowCreateButton', function() {
+    return this.possibleIngredients.length || this.shouldShowCreateButton
+  }),
+
   clear() {
     this.set('value', '');
     this.set('possibleIngredients', []);
