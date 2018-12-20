@@ -9,6 +9,9 @@ import { all } from 'rsvp';
 
 export default Component.extend({
   store: inject(),
+  router: inject(),
+
+  classNames: ['toolbar-padding'],
 
   recipe: computed('givenRecipe', function() {
     return this.givenRecipe || this.store.createRecord('recipe')
@@ -34,7 +37,19 @@ export default Component.extend({
           ri.set('recipe', this.recipe);
           return ri.save();
         }));
+      }).then(() => {
+        this.router.transitionTo('recipes.recipe', this.recipe.id);
       });
+    },
+
+    goBack() {
+      this.recipe.rollbackAttributes()
+      
+      if (this.isNew) {
+        this.router.transitionTo('recipes');
+      } else {
+        this.router.transitionTo('recipes.recipe', this.recipe.id);
+      }
     }
   }
 });

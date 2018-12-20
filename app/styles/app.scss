@@ -21,3 +21,14 @@ $warn: "pink";
   border: 1px solid var(--foreground-4);
   z-index: 2;
 }
+
+.toolbar-padding {
+  padding-top: 85px;
+}
+
+.top-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}

@@ -1,22 +1,27 @@
-<h1>{{recipe.name}}</h1>
-<p>Cook Time: {{recipe.cookTime}}</p>
-<p>Created At: {{recipe.createdAt}}</p>
-<p>Inactive Time: {{recipe.inactiveTime}}</p>
-<p>Name: {{recipe.name}}</p>
-<p>Prep Time: {{recipe.prepTime}}</p>
-<p>Servings: {{recipe.servings}}</p>
+{{#paper-toolbar accent="true" class="top-toolbar"}}
+  {{#paper-toolbar-tools}}
+    {{#link-to "recipes"}}
+      {{paper-button label="Go Back"}}
+    {{/link-to}}
+    <span class="flex"></span>
+    <h1>{{recipe.name}}</h1>
+    <span class="flex"></span>
+    {{#link-to "recipes.edit" recipe.id}}
+      {{paper-button raised=true label="Edit"}}
+    {{/link-to}}
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
+
 <p>Source: {{recipe.source}}</p>
+<p>Prep Time: {{recipe.prepTime}}</p>
+<p>Cook Time: {{recipe.cookTime}}</p>
+<p>Inactive Time: {{recipe.inactiveTime}}</p>
+<p>Servings: {{recipe.servings}}</p>
+<p>Created At: {{recipe.createdAt}}</p>
 <p>Updated At: {{recipe.updatedAt}}</p>
 
 <h2>Steps</h2>
 <pre>{{recipe.steps}}</pre>
-
-<h2>Ingredients</h2>
-<ul>
-  {{#each recipe.ingredients as |ingredient|}}
-    <li>{{ingredient.name}}</li>
-  {{/each}}
-</ul>
 
 <h2>Recipe Ingredients</h2>
 <ul>

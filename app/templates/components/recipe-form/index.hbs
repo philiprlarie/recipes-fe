@@ -1,8 +1,12 @@
-{{#if isNew}}
-  <h1>New recipe</h1>
-{{else}}
-  <h1>Edit recipe</h1>
-{{/if}}
+{{#paper-toolbar accent="true" class="top-toolbar"}}
+  {{#paper-toolbar-tools}}
+    {{paper-button label="Go Back" onClick=(action "goBack")}}
+    <span class="flex"></span>
+    <h1>{{if isNew "New recipe" "Edit recipe"}}</h1>
+    <span class="flex"></span>
+    {{paper-button raised=true label="Save" onClick=(action "save")}}
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
 
 <div class="layout-row">
   {{paper-input
@@ -79,7 +83,3 @@
 
 <h2>Add Ingredient</h2>
 {{recipe-form/recipe-ingredient submit=(action "addIngredient")}}
-
-{{#paper-button onClick=(action "save") raised=true primary=true}}
-  Save Recipe
-{{/paper-button}}
