@@ -1,0 +1,25 @@
+{{paper-input
+  label=lable
+  value=value
+  onKeyUp=(action "handleFilterEntry")
+  onChange=(action (mut value))
+  placeholder=placeholder
+}}
+
+{{#if shouldShowList}}
+  {{#paper-list class="input-searchable-list"}}
+    {{#each possibleOptions as |option|}}
+      {{#paper-item onClick=(action "onOptionClicked" option)}}
+        {{highlighted-substring
+          str=(get option keyPath)
+          substr=value
+        }}
+      {{/paper-item}}
+    {{/each}}
+    {{#if shouldShowCreateButton}}
+      {{#paper-item onClick=(action "onCreateButtonClicked")}}
+        <p>{{createButtonText}} <strong>"{{value}}"</strong></p>
+      {{/paper-item}}
+    {{/if}}
+  {{/paper-list}}
+{{/if}}

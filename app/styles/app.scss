@@ -5,6 +5,14 @@ $warn: "pink";
 
 @import 'ember-paper';
 
+.inline-block {
+  display: inline-block;
+}
+
+.pos-relative {
+  position: relative;
+}
+
 .container {
   width: 960px;
   margin: 0 auto;
@@ -14,12 +22,18 @@ $warn: "pink";
   position: relative;
 }
 
-.ingredient-list {
+.input-searchable-list {
   position: absolute;
   top: 49px;
   background: white;
   border: 1px solid var(--foreground-4);
   z-index: 2;
+  width: 100%;
+  padding: 0;
+}
+
+.input-searchable-list md-list-item:nth-child(odd) {
+  background: #f4f4f4;
 }
 
 .toolbar-padding {

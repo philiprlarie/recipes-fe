@@ -11,15 +11,11 @@
   placeholder="e.g. 2"
 }}
 
-{{#paper-select
-  label="Units"
-  options=measures
-  selected=(if recipeIngredient.measure.content recipeIngredient.measure)
-  onChange=(action (mut (get recipeIngredient "measure")))
-as |measure|
+{{recipe-form/measure-search
+  measureWasSelected=(action (mut (get recipeIngredient "measure")))
+  measure=recipeIngredient.measure
+  measures=measures
 }}
-  {{measure.unit}}
-{{/paper-select}}
 
 {{paper-input
   label="Notes"
