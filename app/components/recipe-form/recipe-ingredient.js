@@ -6,6 +6,7 @@ import { inject } from '@ember/service';
   givenRecipeIngredient Optional. if passed in, we are in update mode
   submit Optional. if isNew is true, there will be a submit button that will call this action when clicked
   deleteIngredient
+  formWasSubmitted - boolean. used to decide wheater to show validations
 */
 
 export default Component.extend({

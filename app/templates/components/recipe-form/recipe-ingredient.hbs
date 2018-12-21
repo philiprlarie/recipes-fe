@@ -1,6 +1,8 @@
 {{recipe-form/ingredient-search
   ingredient=(readonly recipeIngredient.ingredient)
   ingredientWasSelected=(action "ingredientWasSelected")
+  validationErrorMessages=recipeIngredient.validations.attrs.ingredient.errors
+  formWasSubmitted=formWasSubmitted
 }}
 
 {{paper-input
@@ -9,12 +11,16 @@
   onChange=(action (mut (get recipeIngredient "amount")))
   type="number"
   placeholder="e.g. 2"
+  validationErrorMessages=recipeIngredient.validations.attrs.amount.errors
+  isTouched=(readonly formWasSubmitted)
 }}
 
 {{recipe-form/measure-search
   measureWasSelected=(action (mut (get recipeIngredient "measure")))
   measure=recipeIngredient.measure
   measures=measures
+  validationErrorMessages=recipeIngredient.validations.attrs.measure.errors
+  formWasSubmitted=formWasSubmitted
 }}
 
 {{paper-input

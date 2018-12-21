@@ -1,9 +1,11 @@
 {{paper-input
-  label=lable
+  label=label
   value=value
   onKeyUp=(action "handleFilterEntry")
   onChange=(action (mut value))
   placeholder=placeholder
+  validationErrorMessages=validationErrorMessages
+  isTouched=(readonly formWasSubmitted)
 }}
 
 {{#if shouldShowList}}

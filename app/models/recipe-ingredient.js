@@ -1,7 +1,23 @@
 import DS from 'ember-data';
 import { computed } from '@ember/object';
+import { validator, buildValidations } from 'ember-cp-validations';
 
-export default DS.Model.extend({
+// http://offirgolan.github.io/ember-cp-validations/
+
+const Validations = buildValidations({
+  amount: [
+    validator('presence', true),
+    validator('number', {
+      allowString: true,
+      gt: 0,
+    })
+  ],
+  ingredient: validator('presence', true),
+  measure: validator('presence', true),
+  recipe: validator('presence', true)
+});
+
+export default DS.Model.extend(Validations, {
   amount: DS.attr('number'),
   createdAt: DS.attr('date'),
   notes: DS.attr('string'),

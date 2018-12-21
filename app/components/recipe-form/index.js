@@ -8,10 +8,12 @@ import { all } from 'rsvp';
 */
 
 export default Component.extend({
+  classNames: ['toolbar-padding'],
+
   store: inject(),
   router: inject(),
 
-  classNames: ['toolbar-padding'],
+  formWasSubmitted: false,
 
   recipe: computed('givenRecipe', function() {
     return this.givenRecipe || this.store.createRecord('recipe')
@@ -29,21 +31,27 @@ export default Component.extend({
     },
 
     save() {
+      this.set('formWasSubmitted', true);
+
       // save recipe
       // save ingredients
       // save recipeIngredients
-      this.recipe.save().then(() => {
-        return all(this.get('recipe.recipeIngredients').map(ri => {
-          return ri.get('ingredient').then(ingredient => ingredient.save());
-        }));
-      }).then(() => {
-        return all(this.get('recipe.recipeIngredients').map(ri => {
-          ri.set('recipe', this.recipe);
-          return ri.save();
-        }));
-      }).then(() => {
-        this.router.transitionTo('recipes.recipe', this.recipe.id);
-      });
+      this.recipe.validate().then(({ validations }) => {
+        if (validations.isValid) {
+          this.recipe.save().then(() => {
+            return all(this.get('recipe.recipeIngredients').map(ri => {
+              return ri.get('ingredient').then(ingredient => ingredient.save());
+            }));
+          }).then(() => {
+            return all(this.get('recipe.recipeIngredients').map(ri => {
+              ri.set('recipe', this.recipe);
+              return ri.save();
+            }));
+          }).then(() => {
+            this.router.transitionTo('recipes.recipe', this.recipe.id);
+          });
+        }
+      })
     },
 
     goBack() {

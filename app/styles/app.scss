@@ -46,3 +46,7 @@ $warn: "pink";
   left: 0;
   right: 0;
 }
+
+.error {
+  color: RGB(var(--warn-A700));
+}

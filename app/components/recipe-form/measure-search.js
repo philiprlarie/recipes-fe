@@ -5,6 +5,8 @@ import { computed } from '@ember/object';
   measureWasSelected
   measure
   measures
+  formWasSubmitted - boolean. used to decide wheater to show validations
+  validationErrorMessages - array of objects with message property. can be empty
 */
 
 export default Component.extend({

@@ -10,6 +10,8 @@ import { computed, get } from '@ember/object';
   createOptionWasSelected - optional. if not passed, the create option row will not show
   selectedOption - the option that was selected. data down
   keyPath - the key of the value that should show in the results
+  validationErrorMessages - array of objects with message property. can be empty
+  formWasSubmitted - boolean. used to decide wheater to show validations
 */
 
 export default Component.extend({
@@ -64,8 +66,8 @@ export default Component.extend({
     },
 
     onCreateButtonClicked() {
-      this.clear();
       this.createOptionWasSelected(this.value);
+      this.clear();
     }
   }
 });
