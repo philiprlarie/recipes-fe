@@ -5,6 +5,7 @@ import { inject } from '@ember/service';
 /*
   givenRecipeIngredient Optional. if passed in, we are in update mode
   submit Optional. if isNew is true, there will be a submit button that will call this action when clicked
+  deleteIngredient
 */
 
 export default Component.extend({
@@ -35,6 +36,9 @@ export default Component.extend({
     addIngredientButtonClicked() {
       this.submit(this.recipeIngredient);
       this.clear();
+    },
+    deleteIngredientButtonClicked() {
+      this.deleteIngredient(this.recipeIngredient)
     }
   }
 });

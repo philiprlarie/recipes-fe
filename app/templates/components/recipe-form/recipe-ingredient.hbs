@@ -16,7 +16,8 @@
   options=measures
   selected=(if recipeIngredient.measure.content recipeIngredient.measure)
   onChange=(action (mut (get recipeIngredient "measure")))
-  as |measure|}}
+as |measure|
+}}
   {{measure.unit}}
 {{/paper-select}}
 
@@ -28,7 +29,19 @@
 }}
 
 {{#if isNew}}
-  {{#paper-button onClick=(action "addIngredientButtonClicked") raised=true primary=true}}
+  {{#paper-button
+    onClick=(action "addIngredientButtonClicked")
+    raised=true
+    primary=true
+  }}
     Add ingredient
+  {{/paper-button}}
+{{else}}
+  {{#paper-button
+    onClick=(action "deleteIngredientButtonClicked")
+    raised=true
+    primary=true
+  }}
+    Delete ingredient
   {{/paper-button}}
 {{/if}}

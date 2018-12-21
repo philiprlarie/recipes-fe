@@ -78,7 +78,12 @@
 
 <h2>Ingredients</h2>
 {{#each recipe.recipeIngredients as |ri|}}
-  {{recipe-form/recipe-ingredient givenRecipeIngredient=ri}}
+  {{#if (not ri.isDeleted)}}
+    {{recipe-form/recipe-ingredient
+      givenRecipeIngredient=ri
+      deleteIngredient=(action "deleteIngredient")
+    }}
+  {{/if}}
 {{/each}}
 
 <h2>Add Ingredient</h2>

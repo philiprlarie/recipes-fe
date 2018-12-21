@@ -24,6 +24,10 @@ export default Component.extend({
       this.recipe.recipeIngredients.pushObject(recipeIngredient)
     },
 
+    deleteIngredient(recipeIngredient) {
+      recipeIngredient.deleteRecord();
+    },
+
     save() {
       // save recipe
       // save ingredients
@@ -44,7 +48,11 @@ export default Component.extend({
 
     goBack() {
       this.recipe.rollbackAttributes()
-      
+
+      this.get('recipe.recipeIngredients').forEach(ri => {
+        ri.rollbackAttributes();
+      });
+
       if (this.isNew) {
         this.router.transitionTo('recipes');
       } else {
