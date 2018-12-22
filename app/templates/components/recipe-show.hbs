@@ -12,12 +12,15 @@
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 <h1 class="show-print">{{recipe.name}}</h1>
+
+<h2>Info</h2>
+<p><strong>Name:</strong> {{recipe.name}}</p>
+<p><strong>Serves</strong> {{recipe.servings}}</p>
 <p><strong>Source:</strong> {{recipe.source}}</p>
 <p>
   <strong>Total time:</strong>
   {{totalTime}} minutes {{timeString}}
 </p>
-<p><strong>Serves</strong> {{recipe.servings}}</p>
 
 <h2>Ingredients</h2>
 <ul class="recipe-ingredients-list">

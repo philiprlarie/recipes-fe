@@ -1,13 +1,13 @@
 {{recipe-form/ingredient-search
   class="flex-20"
   ingredient=(readonly recipeIngredient.ingredient)
-  ingredientWasSelected=(action "ingredientWasSelected")
+  ingredientWasSelected=(action (mut (get recipeIngredient "ingredient")))
   validationErrorMessages=recipeIngredient.validations.attrs.ingredient.errors
   formWasSubmitted=formWasSubmitted
 }}
 
 {{paper-input
-  class="flex-10"
+  class="flex-15"
   label="Amount"
   value=recipeIngredient.amount
   onChange=(action (mut (get recipeIngredient "amount")))
@@ -27,29 +27,18 @@
 }}
 
 {{paper-input
-  class="flex-40"
+  class="flex-35"
   label="Notes"
   value=recipeIngredient.notes
   onChange=(action (mut (get recipeIngredient "notes")))
   placeholder="You can substitute with..."
 }}
 
-{{#if isNew}}
-  {{#paper-button
-    class="flex-15 recipe-ingredient-button"
-    onClick=(action "addIngredientButtonClicked")
-    raised=false
-    accent=true
-  }}
-    Add ingredient
-  {{/paper-button}}
-{{else}}
-  {{#paper-button
-    class="flex-15 recipe-ingredient-button"
-    onClick=(action "deleteIngredientButtonClicked")
-    raised=false
-    warn=true
-  }}
-    Delete ingredient
-  {{/paper-button}}
-{{/if}}
+{{#paper-button
+  class="flex-15 recipe-ingredient-button"
+  onClick=(action "deleteIngredientButtonClicked")
+  raised=false
+  warn=true
+}}
+  Delete ingredient
+{{/paper-button}}

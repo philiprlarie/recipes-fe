@@ -9,9 +9,11 @@
 {{/paper-toolbar}}
 
 <form autocomplete="off">
+  <h2>Info</h2>
+
   <div class="layout-row">
     {{paper-input
-      class="flex-30"
+      class="flex-66"
       label="Name"
       placeholder="Enter name"
       value=recipe.name
@@ -19,11 +21,22 @@
       validationErrorMessages=recipe.validations.attrs.name.errors
       isTouched=(readonly formWasSubmitted)
     }}
+
+    {{paper-input
+      class="flex-33"
+      label="Servings"
+      type="number"
+      placeholder="e.g. 4"
+      value=recipe.servings
+      onChange=(action (mut (get recipe "servings")))
+      validationErrorMessages=recipe.validations.attrs.servings.errors
+      isTouched=(readonly formWasSubmitted)
+    }}
   </div>
 
   <div class="layout-row">
     {{paper-input
-      class="flex-50"
+      class="flex-100"
       label="Source"
       placeholder="Source (e.g. URL)"
       value=recipe.source
@@ -66,16 +79,6 @@
     }}
   </div>
 
-  {{paper-input
-    label="Servings"
-    type="number"
-    placeholder="e.g. 4"
-    value=recipe.servings
-    onChange=(action (mut (get recipe "servings")))
-    validationErrorMessages=recipe.validations.attrs.servings.errors
-    isTouched=(readonly formWasSubmitted)
-  }}
-
   <h2>Ingredients</h2>
   {{#if (and formWasSubmitted (is-empty recipe.recipeIngredients))}}
     <p class="error">At least one ingredient is required</p>
@@ -84,14 +87,22 @@
     {{#if (not ri.isDeleted)}}
       {{recipe-form/recipe-ingredient
         formWasSubmitted=formWasSubmitted
-        givenRecipeIngredient=ri
+        recipeIngredient=ri
         deleteIngredient=(action "deleteIngredient")
       }}
     {{/if}}
   {{/each}}
 
-  <h2>Add Ingredient</h2>
-  {{recipe-form/recipe-ingredient submit=(action "addIngredient")}}
+  {{#paper-button
+    class="flex-15 recipe-ingredient-button"
+    onClick=(action "addIngredient")
+    raised=false
+    accent=true
+  }}
+    Add ingredient
+  {{/paper-button}}
+
+  <h2>Steps</h2>
 
   <div class="layout-row">
     {{paper-input

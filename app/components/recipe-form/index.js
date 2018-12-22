@@ -22,7 +22,8 @@ export default Component.extend({
   isNew: computed.not('givenRecipe'),
 
   actions: {
-    addIngredient(recipeIngredient) {
+    addIngredient() {
+      const recipeIngredient = this.store.createRecord('recipeIngredient')
       this.recipe.recipeIngredients.pushObject(recipeIngredient)
     },
 
@@ -57,7 +58,9 @@ export default Component.extend({
     goBack() {
       this.recipe.rollbackAttributes()
 
-      this.get('recipe.recipeIngredients').forEach(ri => {
+      const ris = this.get('recipe.recipeIngredients').slice();
+      // make a copy of the array. recipe.recipeIngredients changes length when ri's are rolled back
+      ris.forEach(ri => {
         ri.rollbackAttributes();
       });
 
