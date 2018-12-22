@@ -77,10 +77,8 @@
   }}
 
   <h2>Ingredients</h2>
-  {{#if (and formWasSubmitted (v-get recipe "recipeIngredients" "isInvalid"))}}
-    {{#if (is-empty recipe.recipeIngredients)}}
-      <p class="error">At least one ingredient is required</p>
-    {{/if}}
+  {{#if (and formWasSubmitted (is-empty recipe.recipeIngredients))}}
+    <p class="error">At least one ingredient is required</p>
   {{/if}}
   {{#each recipe.recipeIngredients as |ri|}}
     {{#if (not ri.isDeleted)}}
