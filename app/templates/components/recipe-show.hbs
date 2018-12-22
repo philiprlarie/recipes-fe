@@ -1,4 +1,4 @@
-{{#paper-toolbar accent="true" class="top-toolbar"}}
+{{#paper-toolbar accent="true" class="top-toolbar hide-print"}}
   {{#paper-toolbar-tools}}
     {{#link-to "recipes"}}
       {{paper-button label="Go Back"}}
@@ -11,21 +11,22 @@
     {{/link-to}}
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
+<h1 class="show-print">{{recipe.name}}</h1>
+<p><strong>Source:</strong> {{recipe.source}}</p>
+<p>
+  <strong>Total time:</strong>
+  {{totalTime}} minutes {{timeString}}
+</p>
+<p><strong>Serves</strong> {{recipe.servings}}</p>
 
-<p>Source: {{recipe.source}}</p>
-<p>Prep Time: {{recipe.prepTime}}</p>
-<p>Cook Time: {{recipe.cookTime}}</p>
-<p>Inactive Time: {{recipe.inactiveTime}}</p>
-<p>Servings: {{recipe.servings}}</p>
-<p>Created At: {{recipe.createdAt}}</p>
-<p>Updated At: {{recipe.updatedAt}}</p>
-
-<h2>Steps</h2>
-{{format-markdown recipe.steps}}
-
-<h2>Recipe Ingredients</h2>
-<ul>
+<h2>Ingredients</h2>
+<ul class="recipe-ingredients-list">
   {{#each recipe.recipeIngredients as |ri|}}
-    <li>{{ri.ingredient.name}}, {{ri.amountDisplay}}{{#if ri.notes}}, {{ri.notes}}{{/if}}</li>
+    <li><strong>{{ri.amountDisplay}} {{ri.ingredient.name}}</strong>{{#if ri.notes}}, {{ri.notes}}{{/if}}</li>
   {{/each}}
 </ul>
+
+<h2>Steps</h2>
+<div class="recipe-steps">
+  {{format-markdown recipe.steps}}
+</div>

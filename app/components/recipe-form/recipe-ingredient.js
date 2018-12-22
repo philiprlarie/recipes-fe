@@ -10,7 +10,7 @@ import { inject } from '@ember/service';
 */
 
 export default Component.extend({
-  classNames: ['recipe-ingredient-form'],
+  classNames: ['recipe-ingredient-form layout-row'],
   store: inject(),
 
   recipeIngredient: computed('givenRecipeIngredient', function() {

@@ -1,6 +1,6 @@
 // Define desired color palettes for each intention.
-$primary: "purple";
-$accent: "light-green";
+$primary: "light-green";
+$accent: "light-blue";
 $warn: "pink";
 
 @import 'ember-paper';
@@ -38,6 +38,9 @@ $warn: "pink";
 
 .toolbar-padding {
   padding-top: 85px;
+  @media print {
+    padding-top: 0;
+  }
 }
 
 .top-toolbar {
@@ -49,4 +52,51 @@ $warn: "pink";
 
 .error {
   color: RGB(var(--warn-A700));
+}
+
+.recipe-steps {
+  h1 {
+    font-size: 1.4em;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  h3 {
+    font-size: 1em;
+  }
+
+  li {
+    margin-bottom: 20px;
+  }
+}
+
+.recipe-ingredients-list {
+  strong {
+    font-weight: 500;
+  }
+
+  li {
+    margin-bottom: 8px;
+  }
+}
+
+.recipe-ingredient-button {
+  height: 55px;
+}
+
+.hide-print {
+  @media print {
+    display: none;
+  }
+}
+
+.show-print {
+  @media screen {
+    display: none;
+  }
+  @media print {
+    display: inherit;
+  }
 }

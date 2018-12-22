@@ -76,21 +76,6 @@
     isTouched=(readonly formWasSubmitted)
   }}
 
-  <div class="layout-row">
-    {{paper-input
-      block=true
-      label="Steps"
-      textarea=true
-      class="flex-50"
-      value=recipe.steps
-      onChange=(action (mut (get recipe "steps")))
-      placeholder="Steps"
-      passThru=(hash rows=7 maxRows=7)
-      validationErrorMessages=recipe.validations.attrs.steps.errors
-      isTouched=(readonly formWasSubmitted)
-    }}
-  </div>
-
   <h2>Ingredients</h2>
   {{#if (and formWasSubmitted (v-get recipe "recipeIngredients" "isInvalid"))}}
     {{#if (is-empty recipe.recipeIngredients)}}
@@ -109,4 +94,19 @@
 
   <h2>Add Ingredient</h2>
   {{recipe-form/recipe-ingredient submit=(action "addIngredient")}}
+
+  <div class="layout-row">
+    {{paper-input
+      block=true
+      label="Steps"
+      textarea=true
+      class="flex-100"
+      value=recipe.steps
+      onChange=(action (mut (get recipe "steps")))
+      placeholder="Steps"
+      passThru=(hash rows=5)
+      validationErrorMessages=recipe.validations.attrs.steps.errors
+      isTouched=(readonly formWasSubmitted)
+    }}
+  </div>
 </form>
