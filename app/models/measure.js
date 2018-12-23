@@ -8,11 +8,11 @@ export default DS.Model.extend({
   unit: DS.attr('string'),
   updatedAt: DS.attr('date'),
 
-  display: computed('units', 'abbreviation', function() {
-    if (this.units === 'number') {
+  display: computed('unit', 'abbreviation', function() {
+    if (this.unit === 'count') {
       return '';
     }
 
-    return this.abbreviation || this.units;
+    return this.abbreviation || this.unit;
   })
 });
