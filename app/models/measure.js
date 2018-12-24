@@ -13,6 +13,9 @@ export default DS.Model.extend({
       return '';
     }
 
-    return this.abbreviation || this.unit;
+    if (this.abbreviation) {
+      return `${this.abbreviation}.`
+    }
+    return this.unit;
   })
 });

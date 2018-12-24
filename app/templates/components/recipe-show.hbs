@@ -25,7 +25,7 @@
 <h2>Ingredients</h2>
 <ul class="recipe-ingredients-list">
   {{#each recipe.recipeIngredients as |ri|}}
-    <li><strong>{{ri.amountDisplay}} {{ri.ingredient.name}}</strong>{{#if ri.notes}}, {{ri.notes}}{{/if}}</li>
+    <li><strong>{{ri.ingredientAmountDisplay}}</strong>{{#if ri.notes}}, {{ri.notes}}{{/if}}</li>
   {{/each}}
 </ul>
 

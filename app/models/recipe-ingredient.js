@@ -29,5 +29,13 @@ export default DS.Model.extend(Validations, {
 
   amountDisplay: computed('amount', 'measure.display', function() {
     return `${this.amount} ${this.get('measure.display') || ''}`.trim();
+  }),
+
+  ingredientAmountDisplay: computed('ingredient', 'amountDisplay', function() {
+    if (this.get('measure.display') === 'to taste') {
+      return `${this.get('ingredient.name')} to taste`
+    } else {
+      return `${this.amountDisplay} ${this.get('ingredient.name')}`
+    }
   })
 })

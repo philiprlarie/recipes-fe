@@ -13,6 +13,11 @@ export default Component.extend({
   classNames: ['inline-block'],
 
   getSearchResults: computed(function () {
-    return (searchValue) => Promise.resolve(this.measures.filter(measure => measure.unit.includes(searchValue)));
+    return (searchValue) => Promise.resolve(this.measures.filter(measure => {
+      return (
+        measure.unit.includes(searchValue) ||
+        measure.abbreviation && measure.abbreviation.includes(searchValue)
+      );
+    }));
   })
 });

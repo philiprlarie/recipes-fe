@@ -49,6 +49,16 @@
   <div class="layout-row">
     {{paper-input
       class="flex-33"
+      label="Prep Time (minutes)"
+      type="number"
+      placeholder="e.g. 15"
+      value=recipe.prepTime
+      onChange=(action (mut (get recipe "prepTime")))
+      validationErrorMessages=recipe.validations.attrs.prepTime.errors
+      isTouched=(readonly formWasSubmitted)
+    }}
+    {{paper-input
+      class="flex-33"
       label="Cook Time (minutes)"
       type="number"
       placeholder="e.g. 30"
@@ -65,16 +75,6 @@
       value=recipe.inactiveTime
       onChange=(action (mut (get recipe "inactiveTime")))
       validationErrorMessages=recipe.validations.attrs.inactiveTime.errors
-      isTouched=(readonly formWasSubmitted)
-    }}
-    {{paper-input
-      class="flex-33"
-      label="Prep Time (minutes)"
-      type="number"
-      placeholder="e.g. 15"
-      value=recipe.prepTime
-      onChange=(action (mut (get recipe "prepTime")))
-      validationErrorMessages=recipe.validations.attrs.prepTime.errors
       isTouched=(readonly formWasSubmitted)
     }}
   </div>
