@@ -5,6 +5,7 @@ export default ApplicationSerializer.extend({
     let json = this._super(...arguments);
 
     delete json.data.relationships
+    delete json.data.attributes['photo-url']
 
     return json;
   }

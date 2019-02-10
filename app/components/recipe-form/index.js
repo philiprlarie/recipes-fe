@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 import { all } from 'rsvp';
+import $ from 'jquery';
 
 /*
   givenRecipe Optional. if passed in, we are in update mode
@@ -22,6 +23,20 @@ export default Component.extend({
   isNew: computed.not('givenRecipe'),
 
   actions: {
+    photoChanged(inputChangeEvent) {
+      // https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+      const input = inputChangeEvent.target;
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $('#recipe-form__image-form img').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    },
+
     addIngredient() {
       const recipeIngredient = this.store.createRecord('recipeIngredient')
       this.recipe.recipeIngredients.pushObject(recipeIngredient)
@@ -37,18 +52,37 @@ export default Component.extend({
       // save recipe
       // save ingredients
       // save recipeIngredients
-      this.recipe.validate().then(({ validations }) => {
+      this.recipe.validate()
+      .then(({ validations }) => {
         if (validations.isValid) {
-          this.recipe.save().then(() => {
+          this.recipe.save()
+          .then(() => {
             return all(this.get('recipe.recipeIngredients').map(ri => {
               return ri.get('ingredient').then(ingredient => ingredient.save());
             }));
-          }).then(() => {
+          })
+          .then(() => {
             return all(this.get('recipe.recipeIngredients').map(ri => {
               ri.set('recipe', this.recipe);
               return ri.save();
             }));
-          }).then(() => {
+          })
+          .then(() => {
+            const input = $('#recipe-form__image-form input')[0];
+            if (input.files && input.files[0]) {
+              const formData = new FormData();
+              formData.append('photo', input.files[0]);
+
+              return fetch(`/api/recipes/${this.recipe.id}/photo`, {
+                method: 'post',
+                body: formData,
+              })
+            }
+          })
+          .then(() => {
+            return this.recipe.reload()
+          })
+          .then(() => {
             this.router.transitionTo('recipes.recipe', this.recipe.id);
           });
         }

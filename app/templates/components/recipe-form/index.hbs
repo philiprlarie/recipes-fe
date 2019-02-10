@@ -8,7 +8,7 @@
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 
-<form autocomplete="off">
+<div autocomplete="off">
   <h2>Info</h2>
 
   <div class="layout-row">
@@ -79,6 +79,20 @@
     }}
   </div>
 
+  <div class="layout-row">
+    <div>
+      <img
+        src={{recipe.photoUrl}}
+        alt="your image"
+        class="recipes-list__photo-tile"
+      >
+      <label>
+        Choose photo
+        <input type="file" name="photo" onchange={{action "photoChanged"}}>
+      </label>
+    </div>
+  </div>
+
   <h2>Ingredients</h2>
   {{#if (and formWasSubmitted (is-empty recipe.recipeIngredients))}}
     <p class="error">At least one ingredient is required</p>
@@ -118,4 +132,4 @@
       isTouched=(readonly formWasSubmitted)
     }}
   </div>
-</form>
+</div>

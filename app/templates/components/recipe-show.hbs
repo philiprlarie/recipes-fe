@@ -37,17 +37,3 @@
 <div class="recipe-steps">
   {{format-markdown recipe.steps}}
 </div>
-
-<h2>Add Photo</h2>
-<form
-  action="/api/recipes/{{recipe.id}}/photo"
-  method="post"
-  enctype="multipart/form-data"
-  style="padding-bottom: 100px"
->
-  <label>
-    Choose photo
-    <input type="file" name="photo">
-  </label>
-  <button type="submit">Submit</button>
-</form>
