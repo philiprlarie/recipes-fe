@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import { validator, buildValidations } from 'ember-cp-validations';
+import { computed } from '@ember/object';
 
 // http://offirgolan.github.io/ember-cp-validations/
 // https://embermap.com/video/ember-cp-validations
@@ -54,6 +55,7 @@ export default DS.Model.extend(Validations, {
   createdAt: DS.attr('date'),
   inactiveTime: DS.attr('number'),
   name: DS.attr('string'),
+  photoUrl: DS.attr('string'),
   prepTime: DS.attr('number'),
   servings: DS.attr('number'),
   source: DS.attr('string'),
@@ -61,5 +63,22 @@ export default DS.Model.extend(Validations, {
   updatedAt: DS.attr('date'),
 
   ingredients: DS.hasMany('ingredient'),
-  recipeIngredients: DS.hasMany('recipe-ingredient')
+  recipeIngredients: DS.hasMany('recipe-ingredient'),
+
+  totalTime: computed('cookTime', 'prepTime', 'inactiveTime', function() {
+    return this.cookTime + this.prepTime + this.inactiveTime;
+  }),
+
+  timeString: computed('cookTime', 'prepTime', 'inactiveTime', function() {
+    const prepTimeStr = this.prepTime > 0 ? `${this.prepTime} minutes prep, ` : '';
+    const cookTimeStr = this.cookTime > 0 ? `${this.cookTime} minutes active, ` : '';
+    const inactiveTimeStr = this.inactiveTime > 0 ? `${this.inactiveTime} minutes inactive, ` : '';
+
+    if (!prepTimeStr && !cookTimeStr && !inactiveTimeStr) {
+      return '';
+    }
+
+    const totalTimeDescription = `${prepTimeStr}${cookTimeStr}${inactiveTimeStr}`.slice(0, -2);
+    return `(${totalTimeDescription})`;
+  })
 })

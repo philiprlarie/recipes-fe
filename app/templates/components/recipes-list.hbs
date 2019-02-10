@@ -9,8 +9,25 @@
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 
-<ul>
+{{#paper-list}}
   {{#each recipes as |recipe|}}
-    <li>{{#link-to "recipes.recipe" recipe.id}}{{recipe.name}}{{/link-to}}</li>
+    {{#paper-item
+      class="md-3-line recipe-list__row"
+      onClick=(action "goToRecipe" recipe)
+    }}
+      <img
+        src={{recipe.photoUrl}}
+        alt={{recipe.name}}
+        class="recipes-list__photo-tile"
+      >
+      <div class="md-list-item-text">
+        <h3>{{recipe.name}}</h3>
+        <p><strong>Serves:</strong> {{recipe.servings}}</p>
+        <p>
+          <strong>Total time:</strong>
+          {{recipe.totalTime}} minutes {{recipe.timeString}}
+        </p>
+      </div>
+    {{/paper-item}}
   {{/each}}
-</ul>
+{{/paper-list}}
