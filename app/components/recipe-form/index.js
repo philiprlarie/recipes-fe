@@ -68,7 +68,7 @@ export default Component.extend({
             }));
           })
           .then(() => {
-            const input = $('#recipe-form__image-form input')[0];
+            const input = $('input[type="file"][name="photo"]')[0];
             if (input.files && input.files[0] && input.files[0].type.match('image.*')) {
               const formData = new FormData();
               formData.append('photo', input.files[0]);

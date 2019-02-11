@@ -21,7 +21,7 @@ function validURL(str) {
 export function wrapLinkInAnchor(param) {
   if (validURL(param)) {
     const value = Ember.Handlebars.Utils.escapeExpression(param);
-    return htmlSafe(`<a href=${value}>${value}</a>`);
+    return htmlSafe(`<a target="_blank" href=${value}>${value}</a>`);
   }
 
   return param;
