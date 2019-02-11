@@ -80,23 +80,27 @@
   </div>
 
   <div class="layout-row">
-    <div>
+    {{#paper-item class="md-3-line recipe-list__row"}}
+      {{! template-lint-disable }}
       <img
         src={{recipe.photoUrl}}
-        alt="your image"
         class="recipes-list__photo-tile"
         id="recipe-form__image-preview"
       >
-      <label>
-        Choose photo
-        <input
-          type="file"
-          name="photo"
-          accept="image/*"
-          onchange={{action "photoChanged"}}
-        >
-      </label>
-    </div>
+      <div class="md-list-item-text">
+        <label>
+          Choose photo
+          <br>
+          <br>
+          <input
+            type="file"
+            name="photo"
+            accept="image/*"
+            onchange={{action "photoChanged"}}
+          >
+        </label>
+      </div>
+    {{/paper-item}}
   </div>
 
   <h2>Ingredients</h2>
