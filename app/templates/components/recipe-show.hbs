@@ -12,11 +12,15 @@
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 <h1 class="show-print">{{recipe.name}}</h1>
-<img
-  class="recipe-show__photo hide-print"
-  src="http://127.0.0.1:3000{{recipe.photoUrl}}"
-  alt="recipe photo"
->
+
+{{#if recipe.photoUrl}}
+  <img
+    class="recipe-show__photo hide-print"
+    src="http://127.0.0.1:3000{{recipe.photoUrl}}"
+    alt="recipe photo"
+  >
+{{/if}}
+
 <h2>Info</h2>
 <p><strong>Name:</strong> {{recipe.name}}</p>
 <p><strong>Serves:</strong> {{recipe.servings}}</p>

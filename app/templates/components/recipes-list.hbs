@@ -15,9 +15,9 @@
       class="md-3-line recipe-list__row"
       onClick=(action "goToRecipe" recipe)
     }}
+      {{! template-lint-disable }}
       <img
         src={{recipe.photoUrl}}
-        alt={{recipe.name}}
         class="recipes-list__photo-tile"
       >
       <div class="md-list-item-text">

@@ -30,7 +30,7 @@ export default Component.extend({
         var reader = new FileReader();
 
         reader.onload = function(e) {
-          $('#recipe-form__image-form img').attr('src', e.target.result);
+          $('#recipe-form__image-preview').attr('src', e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);
@@ -69,7 +69,7 @@ export default Component.extend({
           })
           .then(() => {
             const input = $('#recipe-form__image-form input')[0];
-            if (input.files && input.files[0]) {
+            if (input.files && input.files[0] && input.files[0].type.match('image.*')) {
               const formData = new FormData();
               formData.append('photo', input.files[0]);
 

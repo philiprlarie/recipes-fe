@@ -85,10 +85,16 @@
         src={{recipe.photoUrl}}
         alt="your image"
         class="recipes-list__photo-tile"
+        id="recipe-form__image-preview"
       >
       <label>
         Choose photo
-        <input type="file" name="photo" onchange={{action "photoChanged"}}>
+        <input
+          type="file"
+          name="photo"
+          accept="image/*"
+          onchange={{action "photoChanged"}}
+        >
       </label>
     </div>
   </div>
