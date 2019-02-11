@@ -114,7 +114,9 @@ $warn: "pink";
 }
 
 .recipes-list__photo-tile {
-  background-color: darkgray;
+  background-image: url('/assets/no-image.jpg');
+  background-size: cover;
+  background-position: center;
   width: 200px;
   height: 100px;
   object-fit: cover;
