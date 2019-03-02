@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 import { all } from 'rsvp';
-import $ from 'jquery';
+import { run } from '@ember/runloop';
 
 /*
   givenRecipe Optional. if passed in, we are in update mode
@@ -29,8 +29,8 @@ export default Component.extend({
       if (input.files && input.files[0]) {
         var reader = new FileReader();
 
-        reader.onload = function(e) {
-          $('#recipe-form__image-preview').attr('src', e.target.result);
+        reader.onload = (e) => {
+          this.$('#recipe-form__image-preview').attr('src', e.target.result);
         };
 
         reader.readAsDataURL(input.files[0]);
@@ -40,7 +40,9 @@ export default Component.extend({
     addIngredient() {
       const recipeIngredient = this.store.createRecord('recipeIngredient');
       this.recipe.recipeIngredients.pushObject(recipeIngredient);
-
+      run.later(this, () => {
+        this.$('.recipe-ingredient-form').last().find('input')[0].focus();
+      });
     },
 
     deleteIngredient(recipeIngredient) {
@@ -69,7 +71,7 @@ export default Component.extend({
             }));
           })
           .then(() => {
-            const input = $('input[type="file"][name="photo"]')[0];
+            const input = this.$('input[type="file"][name="photo"]')[0];
             if (input.files && input.files[0] && input.files[0].type.match('image.*')) {
               const formData = new FormData();
               formData.append('photo', input.files[0]);
