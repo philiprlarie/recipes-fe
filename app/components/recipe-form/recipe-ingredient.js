@@ -18,7 +18,7 @@ export default Component.extend({
 
   actions: {
     deleteIngredientButtonClicked() {
-      this.deleteIngredient(this.recipeIngredient)
+      this.deleteIngredient(this.recipeIngredient);
     }
   }
 });

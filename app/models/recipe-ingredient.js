@@ -33,9 +33,9 @@ export default DS.Model.extend(Validations, {
 
   ingredientAmountDisplay: computed('ingredient', 'amountDisplay', function() {
     if (this.get('measure.display') === 'to taste') {
-      return `${this.get('ingredient.name')} to taste`
+      return `${this.get('ingredient.name')} to taste`;
     } else {
-      return `${this.amountDisplay} ${this.get('ingredient.name')}`
+      return `${this.amountDisplay} ${this.get('ingredient.name')}`;
     }
   })
-})
+});

@@ -38,7 +38,7 @@ export default Component.extend({
   }),
 
   shouldShowList: computed('possibleOptions.[]', 'shouldShowCreateButton', function() {
-    return this.possibleOptions.length || this.shouldShowCreateButton
+    return this.possibleOptions.length || this.shouldShowCreateButton;
   }),
 
   clear() {

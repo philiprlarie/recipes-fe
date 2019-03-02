@@ -17,7 +17,7 @@ export default Component.extend({
   formWasSubmitted: false,
 
   recipe: computed('givenRecipe', function() {
-    return this.givenRecipe || this.store.createRecord('recipe')
+    return this.givenRecipe || this.store.createRecord('recipe');
   }),
 
   isNew: computed.not('givenRecipe'),
@@ -31,15 +31,16 @@ export default Component.extend({
 
         reader.onload = function(e) {
           $('#recipe-form__image-preview').attr('src', e.target.result);
-        }
+        };
 
         reader.readAsDataURL(input.files[0]);
       }
     },
 
     addIngredient() {
-      const recipeIngredient = this.store.createRecord('recipeIngredient')
-      this.recipe.recipeIngredients.pushObject(recipeIngredient)
+      const recipeIngredient = this.store.createRecord('recipeIngredient');
+      this.recipe.recipeIngredients.pushObject(recipeIngredient);
+
     },
 
     deleteIngredient(recipeIngredient) {
@@ -76,21 +77,21 @@ export default Component.extend({
               return fetch(`/api/recipes/${this.recipe.id}/photo`, {
                 method: 'post',
                 body: formData,
-              })
+              });
             }
           })
           .then(() => {
-            return this.recipe.reload()
+            return this.recipe.reload();
           })
           .then(() => {
             this.router.transitionTo('recipes.recipe', this.recipe.id);
           });
         }
-      })
+      });
     },
 
     goBack() {
-      this.recipe.rollbackAttributes()
+      this.recipe.rollbackAttributes();
 
       const ris = this.get('recipe.recipeIngredients').slice();
       // make a copy of the array. recipe.recipeIngredients changes length when ri's are rolled back

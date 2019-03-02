@@ -81,4 +81,4 @@ export default DS.Model.extend(Validations, {
     const totalTimeDescription = `${prepTimeStr}${cookTimeStr}${inactiveTimeStr}`.slice(0, -2);
     return `(${totalTimeDescription})`;
   })
-})
+});

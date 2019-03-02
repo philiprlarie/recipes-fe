@@ -14,7 +14,7 @@ export default DS.Model.extend({
     }
 
     if (this.abbreviation) {
-      return `${this.abbreviation}.`
+      return `${this.abbreviation}.`;
     }
     return this.unit;
   })
