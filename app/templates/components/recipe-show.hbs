@@ -9,6 +9,7 @@
     {{#link-to "recipes.edit" recipe.id}}
       {{paper-button raised=true label="Edit"}}
     {{/link-to}}
+    {{paper-button raised=true label="Print" onClick=(action "printRecipe")}}
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 <h1 class="show-print">{{recipe.name}}</h1>
