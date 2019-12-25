@@ -49,7 +49,7 @@
     "highlightjs": "^9.12.0",
     "loader.js": "^4.7.0",
     "markdown-code-highlighting": "^0.2.1",
-    "marked": "^0.5.2",
+    "marked": "^0.6.1",
     "qunit-dom": "^0.8.0",
     "sass": "^1.15.2"
   },
