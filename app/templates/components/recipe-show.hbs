@@ -6,39 +6,41 @@
     <span class="flex"></span>
     <h1>{{recipe.name}}</h1>
     <span class="flex"></span>
-    {{#link-to "recipes.edit" recipe.id}}
-      {{paper-button raised=true label="Edit"}}
-    {{/link-to}}
+    {{#if canEdit}}
+      {{#link-to "recipes.edit" recipe.id}}
+        {{paper-button raised=true label="Edit"}}
+      {{/link-to}}
+    {{/if}}
+
     {{paper-button raised=true label="Print" onClick=(action "printRecipe")}}
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 <h1 class="show-print">{{recipe.name}}</h1>
 
 {{#if recipe.photoUrl}}
-  <img
-    class="recipe-show__photo hide-print"
-    src="https://mysterious-springs-15383.herokuapp.com{{recipe.photoUrl}}"
-    alt="recipe photo"
-  >
+  <img class="recipe-show__photo hide-print" src="https://mysterious-springs-15383.herokuapp.com{{recipe.photoUrl}}"
+    alt="recipe photo">
 {{/if}}
 
-<h2>Info</h2>
-<p><strong>Name:</strong> {{recipe.name}}</p>
-<p><strong>Serves:</strong> {{recipe.servings}}</p>
-<p><strong>Source:</strong> {{wrap-link-in-anchor recipe.source}}</p>
-<p>
-  <strong>Total time:</strong>
-  {{recipe.totalTime}} minutes {{recipe.timeString}}
-</p>
+<div class="recipe-show__container">
+  <h2>Info</h2>
+  <p><strong>Name:</strong> {{recipe.name}}</p>
+  <p><strong>Serves:</strong> {{recipe.servings}}</p>
+  <p><strong>Source:</strong> {{wrap-link-in-anchor recipe.source}}</p>
+  <p>
+    <strong>Total time:</strong>
+    {{recipe.totalTime}} minutes {{recipe.timeString}}
+  </p>
 
-<h2>Ingredients</h2>
-<ul class="recipe-ingredients-list">
-  {{#each recipe.recipeIngredients as |ri|}}
-    <li><strong>{{ri.ingredientAmountDisplay}}</strong>{{#if ri.notes}}, {{ri.notes}}{{/if}}</li>
-  {{/each}}
-</ul>
+  <h2>Ingredients</h2>
+  <ul class="recipe-ingredients-list">
+    {{#each recipe.recipeIngredients as |ri|}}
+      <li><strong>{{ri.ingredientAmountDisplay}}</strong>{{#if ri.notes}}, {{ri.notes}}{{/if}}</li>
+    {{/each}}
+  </ul>
 
-<h2>Steps</h2>
-<div class="recipe-steps">
-  {{format-markdown recipe.steps}}
+  <h2>Steps</h2>
+  <div class="recipe-steps">
+    {{format-markdown recipe.steps}}
+  </div>
 </div>

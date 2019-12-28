@@ -14,7 +14,8 @@ $warn: "pink";
 }
 
 .container {
-  width: 960px;
+  width: 100%;
+  max-width: 960px;
   margin: 0 auto;
   padding-bottom: 50px;
 }
@@ -118,9 +119,13 @@ $warn: "pink";
   background-image: url('/assets/no-image.jpg');
   background-size: cover;
   background-position: center;
-  width: 200px;
-  height: 100px;
+  width: 40%;
+  height: 200px;
   object-fit: cover;
   object-position: center;
   margin: 20px 10px 20px 0;
+}
+
+.recipe-show__container {
+  padding: 0px 32px;
 }
