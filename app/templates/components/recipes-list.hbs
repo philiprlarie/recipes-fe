@@ -1,33 +1,32 @@
 {{#paper-toolbar accent="true" class="top-toolbar"}}
-  {{#paper-toolbar-tools}}
-    <span class="flex"></span>
-    <h1>All recipes</h1>
-    <span class="flex"></span>
-    {{#link-to "recipes.edit" "new"}}
-      {{paper-button raised=true label="Add recipe"}}
-    {{/link-to}}
-  {{/paper-toolbar-tools}}
+{{#paper-toolbar-tools}}
+<span class="flex"></span>
+<h1>All recipes</h1>
+<span class="flex"></span>
+{{#if canAdd}}
+{{#link-to "recipes.edit" "new"}}
+{{paper-button raised=true label="Add recipe"}}
+{{/link-to}}
+{{/if}}
+{{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 
 {{#paper-list}}
-  {{#each recipes as |recipe|}}
-    {{#paper-item
+{{#each recipes as |recipe|}}
+{{#paper-item
       class="md-3-line recipe-list__row"
       onClick=(action "goToRecipe" recipe)
     }}
-      {{! template-lint-disable }}
-      <img
-        src="https://mysterious-springs-15383.herokuapp.com{{recipe.photoUrl}}"
-        class="recipes-list__photo-tile"
-      >
-      <div class="md-list-item-text">
-        <h3>{{recipe.name}}</h3>
-        <p><strong>Serves:</strong> {{recipe.servings}}</p>
-        <p>
-          <strong>Total time:</strong>
-          {{recipe.totalTime}} minutes {{recipe.timeString}}
-        </p>
-      </div>
-    {{/paper-item}}
-  {{/each}}
+{{! template-lint-disable }}
+<img src="https://mysterious-springs-15383.herokuapp.com{{recipe.photoUrl}}" class="recipes-list__photo-tile">
+<div class="md-list-item-text">
+  <h3>{{recipe.name}}</h3>
+  <p><strong>Serves:</strong> {{recipe.servings}}</p>
+  <p>
+    <strong>Total time:</strong>
+    {{recipe.totalTime}} minutes {{recipe.timeString}}
+  </p>
+</div>
+{{/paper-item}}
+{{/each}}
 {{/paper-list}}
