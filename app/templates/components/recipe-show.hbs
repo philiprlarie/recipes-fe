@@ -1,25 +1,25 @@
 {{#paper-toolbar accent="true" class="top-toolbar hide-print"}}
-{{#paper-toolbar-tools}}
-{{#link-to "recipes"}}
-{{paper-button label="Go Back"}}
-{{/link-to}}
-<span class="flex"></span>
-<h1>{{recipe.name}}</h1>
-<span class="flex"></span>
-{{#if canEdit}}
-{{#link-to "recipes.edit" recipe.id}}
-{{paper-button raised=true label="Edit"}}
-{{/link-to}}
-{{/if}}
+  {{#paper-toolbar-tools}}
+    {{#link-to "recipes"}}
+      {{paper-button label="Go Back"}}
+    {{/link-to}}
+    <span class="flex"></span>
+    <h1>{{recipe.name}}</h1>
+    <span class="flex"></span>
+    {{#if canEdit}}
+      {{#link-to "recipes.edit" recipe.id}}
+        {{paper-button raised=true label="Edit"}}
+      {{/link-to}}
+    {{/if}}
 
-{{paper-button raised=true label="Print" onClick=(action "printRecipe")}}
-{{/paper-toolbar-tools}}
+    {{paper-button raised=true label="Print" onClick=(action "printRecipe")}}
+  {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 <h1 class="show-print">{{recipe.name}}</h1>
 
 {{#if recipe.photoUrl}}
-<img class="recipe-show__photo hide-print" src="https://mysterious-springs-15383.herokuapp.com{{recipe.photoUrl}}"
-  alt="recipe photo">
+  <img class="recipe-show__photo hide-print" src="https://mysterious-springs-15383.herokuapp.com{{recipe.photoUrl}}"
+    alt="recipe photo">
 {{/if}}
 
 <div class="recipe-show__container">
@@ -35,7 +35,7 @@
   <h2>Ingredients</h2>
   <ul class="recipe-ingredients-list">
     {{#each recipe.recipeIngredients as |ri|}}
-    <li><strong>{{ri.ingredientAmountDisplay}}</strong>{{#if ri.notes}}, {{ri.notes}}{{/if}}</li>
+      <li><strong>{{ri.ingredientAmountDisplay}}</strong>{{#if ri.notes}}, {{ri.notes}}{{/if}}</li>
     {{/each}}
   </ul>
 
