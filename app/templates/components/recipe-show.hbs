@@ -4,7 +4,7 @@
       {{paper-button label="Go Back"}}
     {{/link-to}}
     <span class="flex"></span>
-    <h1>{{recipe.name}}</h1>
+    <h1 class="recipe-show__title">{{recipe.name}}</h1>
     <span class="flex"></span>
     {{#if canEdit}}
       {{#link-to "recipes.edit" recipe.id}}
