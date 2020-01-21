@@ -1,6 +1,9 @@
 import DS from 'ember-data';
+import { computed } from '@ember/object';
+import ENV from '../config/environment';
 
 export default DS.JSONAPIAdapter.extend({
-  // host: 'https://api.example.com',
-  host: 'https://mysterious-springs-15383.herokuapp.com/api'
+  host: computed(function() {
+    return ENV.ajaxRootURL + '/api';
+  }),
 });
