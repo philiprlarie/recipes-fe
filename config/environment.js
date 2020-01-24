@@ -6,6 +6,9 @@ module.exports = function(environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
+    ajaxRootURL: environment === 'production'
+      ? 'https://mysterious-springs-15383.herokuapp.com'
+      : 'http://127.0.0.1:3000',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
