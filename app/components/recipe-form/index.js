@@ -3,6 +3,7 @@ import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 import { all } from 'rsvp';
 import { run } from '@ember/runloop';
+import ENV from '../../config/environment';
 
 /*
   givenRecipe Optional. if passed in, we are in update mode
@@ -76,7 +77,7 @@ export default Component.extend({
               const formData = new FormData();
               formData.append('photo', input.files[0]);
 
-              return fetch(`/api/recipes/${this.recipe.id}/photo`, {
+              return fetch(`${ENV.ajaxRootURL}/api/recipes/${this.recipe.id}/photo`, {
                 method: 'post',
                 body: formData,
               });
