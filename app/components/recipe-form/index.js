@@ -17,6 +17,8 @@ export default Component.extend({
 
   formWasSubmitted: false,
 
+  ajaxRootURL: ENV.ajaxRootURL,
+
   recipe: computed('givenRecipe', function() {
     return this.givenRecipe || this.store.createRecord('recipe');
   }),
@@ -77,7 +79,7 @@ export default Component.extend({
               const formData = new FormData();
               formData.append('photo', input.files[0]);
 
-              return fetch(`${ENV.ajaxRootURL}/api/recipes/${this.recipe.id}/photo`, {
+              return fetch(`${this.ajaxRootURL}/api/recipes/${this.recipe.id}/photo`, {
                 method: 'post',
                 body: formData,
               });
